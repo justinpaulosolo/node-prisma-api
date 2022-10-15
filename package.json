@@ -7,7 +7,8 @@
     "start": "npm run build:live",
     "build": "tsc -p .",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
-    "seed": "ts-node src/utils/db/seed.ts"
+    "seed": "ts-node src/utils/db/seed.ts",
+    "test": "TEST=true jest"
   },
   "author": "",
   "license": "ISC",
@@ -16,11 +17,14 @@
     "@types/express": "^4.17.14",
     "@types/hapi__hapi": "^20.0.12",
     "@types/hapi__joi": "^17.1.8",
+    "@types/jest": "^29.1.2",
     "@types/node": "^18.8.5",
     "@types/passport": "^1.0.11",
     "@types/passport-local": "^1.0.34",
+    "jest": "^29.2.0",
     "nodemon": "^2.0.20",
     "prisma": "^4.4.0",
+    "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   },
