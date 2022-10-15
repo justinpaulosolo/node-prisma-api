@@ -1,20 +1,24 @@
-import express from "express";
-import cors from "cors";
-import prisma from "./utils/db/prisma";
+import Hapi from "@hapi/hapi";
 
-const app = express();
-
-app.use(express.json());
-app.use(cors());
-
-app.get("/", (req, res) => {
-  const data = {
-    code: 200,
-    message: "Hello World",
-  };
-  res.json(data);
+const server = Hapi.server({
+  port: process.env.PORT || 3000,
+  host: process.env.HOST || "localhost",
 });
 
-app.listen(3002, () =>
-  console.log("Server running on port at: http://localhost:3002")
-);
+export async function start(): Promise<Hapi.Server> {
+  await server.start();
+  return server;
+}
+
+process.on("unhandledRejection", (err) => {
+  console.log(err);
+  process.exit(1);
+});
+
+start()
+  .then((server) => {
+    console.log(`Server running at: ${server.info.uri}`);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
